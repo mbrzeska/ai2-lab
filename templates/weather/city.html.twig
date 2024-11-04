@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+{# @var location \App\Entity\Location #}
+{# @var measurement \App\Entity\Measurement #}
+
+
+{% block title %}Weather in {{ location.city }}, {{ location.country }}{% endblock %}
+
+{% block body %}
+
+
+    <main>
+        <h1>Weather in {{ location.city }}, {{ location.country }}</h1>
+
+        {% if measurements is not empty %}
+            <ul>
+                {% for measurement in measurements %}
+                    <li>{{ measurement.date|date('d.m.Y') }}: {{ measurement.celsius }}&deg;C</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No measurement data available.</p>
+        {% endif %}
+
+    </main>
+
+{% endblock %}
