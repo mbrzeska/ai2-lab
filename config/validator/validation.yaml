@@ -1,0 +1,39 @@
+App\Entity\Location:
+  properties:
+    city:
+      - NotBlank:
+          groups: ['create', 'edit']
+      - Length:
+          min: 1
+          max: 70
+          groups: [ 'create', 'edit' ]
+    latitude:
+      - NotBlank:
+          groups: ['create', 'edit']
+      - Range:
+          min: -90
+          max: 90
+          groups: ['create','edit']
+          notInRangeMessage: 'Latitude must be between -90 and 90.'
+    longitude:
+      - NotBlank:
+          groups: ['create','edit']
+      - Range:
+          min: -180
+          max: 180
+          groups: ['create','edit']
+          notInRangeMessage: 'Longitude must be between -180 and 180.'
+
+
+App\Entity\Measurement:
+  properties:
+    celsius:
+      - NotBlank:
+          groups: ['create', 'edit']
+      - Range:
+          min: -100
+          max: 70
+          groups: [ 'create','edit' ]
+          notInRangeMessage: 'Temperature in celsius must be between -100 and 70.'
+
+

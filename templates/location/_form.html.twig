@@ -1,0 +1,11 @@
+<style>
+    /*.form {
+        width: 400px;
+    }*/
+</style>
+{{ form_start(form) }}
+<div class="form">
+    {{ form_widget(form) }}
+    <button class="btn">{{ buttonabel|default('Save') }}</button>
+</div>
+{{ form_end(form) }}
