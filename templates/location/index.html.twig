@@ -31,8 +31,12 @@
                 <td>{{ location.latitude }}</td>
                 <td>{{ location.longitude }}</td>
                 <td class="td-with-btn">
+                    {%  if is_granted('ROLE_LOCATION_SHOW') %}
                     <a href="{{ path('app_location_show', {'id': location.id}) }}" class="action-btn">show</a>
+                    {% endif %}
+                    {%  if is_granted('ROLE_LOCATION_EDIT') %}
                     <a href="{{ path('app_location_edit', {'id': location.id}) }}" class="action-btn">edit</a>
+                    {% endif %}
                 </td>
             </tr>
         {% else %}
@@ -43,5 +47,7 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_location_new') }}" class="btn">+ Create new</a>
+    {%  if is_granted('ROLE_LOCATION_NEW') %}
+        <a href="{{ path('app_location_new') }}" class="btn">+ Create new</a>
+    {% endif %}
 {% endblock %}
