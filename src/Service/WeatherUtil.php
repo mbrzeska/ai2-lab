@@ -31,14 +31,23 @@ class WeatherUtil
      */
     public function getWeatherForCountryAndCity(string $countryCode, string $city): array
     {
+        $countryCode = strtoupper(trim($countryCode));
+        $city = ucfirst(strtolower(trim($city)));
+
         $location = $this->locationRepository->findOneBy([
             'country' => $countryCode,
             'city' => $city,
         ]);
 
-        $measurements = $this->getWeatherForLocation($location);
+        if (!$location) {
+            throw new \InvalidArgumentException(sprintf(
+                'Location not found for country "%s" and city "%s".',
+                $countryCode,
+                $city
+            ));
+        }
 
-        return $measurements;
+        return $this->getWeatherForLocation($location);
     }
 }
 

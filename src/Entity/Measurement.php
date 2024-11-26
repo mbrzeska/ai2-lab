@@ -63,6 +63,13 @@ class Measurement
 
         return $this;
     }
+
+    public function getFahrenheit(): ?string
+    {
+        $fahrenheit = number_format((($this->celsius * 9 / 5) + 32), 2);
+        return $fahrenheit;
+    }
+
 }
 
 
